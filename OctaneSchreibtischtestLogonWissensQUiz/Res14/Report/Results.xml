@@ -1,0 +1,516 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="Mitteleuropäische Zeit">
+<General productName="Micro Focus Unified Functional Testing" productVer="15.0" os="" host="DESKTOP-I1AQLFE"><DocLocation><![CDATA[C:\Users\dwp1036\Documents\Unified Functional Testing\OctaneSchreibtischtestLogonWissensQUiz]]></DocLocation></General>
+<Doc rID="T1"   productName= "Micro Focus Unified Functional Testing"  >
+<DName><![CDATA[OctaneSchreibtischtestLogonWissensQUiz]]></DName>
+<Res><![CDATA[Res14]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xlsx]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Login]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[Test2020]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:32]]></Time>
+<TimeTick>1588161632</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[Test2020]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:32]]></Time>
+<TimeTick>1588161632</TimeTick>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[user.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["test2020"]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:32]]></Time>
+<TimeTick>1588161632</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="13" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[user.Set]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf3.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebEdit("user")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[passwort.SetSecure]]></Obj>
+<Details plainTxt="False" ><![CDATA["5e9caf4c71c149f05d251dbc2e3933f405a0caa66b9e"]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:33]]></Time>
+<TimeTick>1588161633</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="16" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[passwort.SetSecure]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf4.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebEdit("passwort")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[login.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:33]]></Time>
+<TimeTick>1588161633</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="19" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[login.Click]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf5.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebButton("login")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Kleines Test2020 Wissensquiz.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object exists"]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:33]]></Time>
+<TimeTick>1588161633</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="21" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Kleines Test2020 Wissensquiz.Exist]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf6.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebElement("Kleines Test2020 Wissensquiz")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="12" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020]]></Disp>
+<BtmPane vType="HTMLSNSH" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf2.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="11" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf1.xml]]></Path>
+<ASHilite><![CDATA[67990]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj ><![CDATA[Login erfolgreich!]]></Obj>
+<Details ><![CDATA[Login für den User test2020 war erfolgreich]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:33]]></Time>
+<TimeTick>1588161633</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="22" status="Passed" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Login erfolgreich!]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[Test2020]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:34]]></Time>
+<TimeTick>1588161634</TimeTick>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[Test2020.Close All Tabs]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:34]]></Time>
+<TimeTick>1588161634</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="24" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020.Close All Tabs]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf8.xml]]></Path>
+<ASHilite><![CDATA[67990]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="23" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf7.xml]]></Path>
+<ASHilite><![CDATA[67990]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Summary sTime="29.04.2020 - 14:00:32" eTime="29.04.2020 - 14:00:35" passed="1" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="8" status="Passed" >
+<Disp><![CDATA[Login Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Passed" >
+<Disp><![CDATA[OctaneSchreibtischtestLogonWissensQUiz Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<DIter rID="T14" iterID="2" >
+<Action rID="T15">
+<AName><![CDATA[Login]]></AName>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Test2020]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:38]]></Time>
+<TimeTick>1588161638</TimeTick>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[Test2020]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:38]]></Time>
+<TimeTick>1588161638</TimeTick>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[user.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA[" "]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:38]]></Time>
+<TimeTick>1588161638</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="34" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[user.Set]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf11.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebEdit("user")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[passwort.SetSecure]]></Obj>
+<Details plainTxt="False" ><![CDATA["5e9caf4c71c149f05d251dbc2e3933f405a0caa66b9e"]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:40]]></Time>
+<TimeTick>1588161640</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="37" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[passwort.SetSecure]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf12.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebEdit("passwort")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[login.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:40]]></Time>
+<TimeTick>1588161640</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="40" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[login.Click]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf13.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebButton("login")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[Kleines Test2020 Wissensquiz.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:45]]></Time>
+<TimeTick>1588161645</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="80" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Kleines Test2020 Wissensquiz.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="33" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020]]></Disp>
+<BtmPane vType="HTMLSNSH" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf10.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="32" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf9.xml]]></Path>
+<ASHilite><![CDATA[656394]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj ><![CDATA[Login nicht erfolgreich!]]></Obj>
+<Details ><![CDATA[Login für den User   war nicht erfolgreich]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:45]]></Time>
+<TimeTick>1588161645</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="81" status="Failed" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Login nicht erfolgreich!]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[Test2020]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:45]]></Time>
+<TimeTick>1588161645</TimeTick>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[Test2020.Close All Tabs]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:46]]></Time>
+<TimeTick>1588161646</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="83" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020.Close All Tabs]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf16.xml]]></Path>
+<ASHilite><![CDATA[656394]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="82" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf15.xml]]></Path>
+<ASHilite><![CDATA[656394]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Summary sTime="29.04.2020 - 14:00:38" eTime="29.04.2020 - 14:00:49" passed="0" failed="1" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="29" status="Failed" >
+<Disp><![CDATA[Login Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="27" status="Failed" >
+<Disp><![CDATA[OctaneSchreibtischtestLogonWissensQUiz Iteration 2 (Row 2)]]></Disp>
+</NodeArgs>
+</DIter>
+<DIter rID="T25" iterID="3" >
+<Action rID="T26">
+<AName><![CDATA[Login]]></AName>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[Test2020]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[29.04.2020 - 14:00:59]]></Time>
+<TimeTick>1588161659</TimeTick>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[Test2020]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[29.04.2020 - 14:01:00]]></Time>
+<TimeTick>1588161660</TimeTick>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[user.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["test2021"]]></Details>
+<Time><![CDATA[29.04.2020 - 14:01:00]]></Time>
+<TimeTick>1588161660</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="93" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[user.Set]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf19.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebEdit("user")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[passwort.SetSecure]]></Obj>
+<Details plainTxt="False" ><![CDATA["5e9caf4c71c149f05d251dbc2e3933f405a0caa66b9e"]]></Details>
+<Time><![CDATA[29.04.2020 - 14:01:05]]></Time>
+<TimeTick>1588161665</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="96" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[passwort.SetSecure]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf20.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebEdit("passwort")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[login.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[29.04.2020 - 14:01:05]]></Time>
+<TimeTick>1588161665</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="99" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[login.Click]]></Disp>
+<BtmPane vType="Mercury.SSHWeb" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf21.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020").WebButton("login")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[Kleines Test2020 Wissensquiz.Exist]]></Obj>
+<Details plainTxt="False" ><![CDATA["Object does not exist"]]></Details>
+<Time><![CDATA[29.04.2020 - 14:01:10]]></Time>
+<TimeTick>1588161670</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="131" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Kleines Test2020 Wissensquiz.Exist]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="92" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020]]></Disp>
+<BtmPane vType="HTMLSNSH" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf18.xml]]></Path>
+<ASHilite><![CDATA[Browser("Test2020").Page("Test2020")]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="91" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf17.xml]]></Path>
+<ASHilite><![CDATA[264552]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj ><![CDATA[Login nicht erfolgreich!]]></Obj>
+<Details ><![CDATA[Login für den User test2021 war nicht erfolgreich]]></Details>
+<Time><![CDATA[29.04.2020 - 14:01:10]]></Time>
+<TimeTick>1588161670</TimeTick>
+<NodeArgs eType="User" icon="10" nRep="132" status="Failed" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Login nicht erfolgreich!]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[Test2020]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[29.04.2020 - 14:01:10]]></Time>
+<TimeTick>1588161670</TimeTick>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[Test2020.Close All Tabs]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[29.04.2020 - 14:01:10]]></Time>
+<TimeTick>1588161670</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="134" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020.Close All Tabs]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf24.xml]]></Path>
+<ASHilite><![CDATA[264552]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="133" Source="Login" SourceLine="-1" >
+<Disp><![CDATA[Test2020]]></Disp>
+<BtmPane vType="ViewerGen.SSViewerGen" >
+<Path><![CDATA[ZIP::Act1\Row0\ssf23.xml]]></Path>
+<ASHilite><![CDATA[264552]]></ASHilite>
+</BtmPane>
+</NodeArgs>
+</Step>
+<Summary sTime="29.04.2020 - 14:00:53" eTime="29.04.2020 - 14:01:13" passed="0" failed="1" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="88" status="Failed" >
+<Disp><![CDATA[Login Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="86" status="Failed" >
+<Disp><![CDATA[OctaneSchreibtischtestLogonWissensQUiz Iteration 3 (Row 3)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="29.04.2020 - 14:00:27" eTime="29.04.2020 - 14:01:14" passed="1" failed="2" warnings="0" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[Test OctaneSchreibtischtestLogonWissensQUiz Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
